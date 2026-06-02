@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJs Juice - Fresh & Natural</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fafafa; color: #333; }
+
+        /* Header */
+        header { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(255,107,53,0.3); }
+        .logo { font-size: 28px; font-weight: 800; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .logo span { color: #ffe66d; }
+        nav a { color: white; text-decoration: none; margin-left: 25px; font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: #ffe66d; }
+
+        /* Hero */
+        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=1200') center/cover; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero h1 { font-size: 56px; color: white; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+        .hero p { font-size: 22px; color: #ffe66d; margin-bottom: 30px; }
+        .cta { background: #ff6b35; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 18px; transition: transform 0.3s, box-shadow 0.3s; display: inline-block; }
+        .cta:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(255,107,53,0.5); }
+
+        /* Menu Section */
+        .menu { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 42px; margin-bottom: 50px; color: #ff6b35; }
+        .juice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .juice-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .juice-card:hover { transform: translateY(-10px); }
+        .juice-img { height: 200px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); display: flex; align-items: center; justify-content: center; font-size: 80px; }
+        .juice-info { padding: 25px; }
+        .juice-info h3 { font-size: 24px; margin-bottom: 10px; color: #333; }
+        .juice-info p { color: #666; margin-bottom: 15px; line-height: 1.6; }
+        .price { font-size: 22px; color: #ff6b35; font-weight: 700; }
+
+        /* Features */
+        .features { background: #fff5f0; padding: 80px 40px; }
+        .features-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .feature { text-align: center; }
+        .feature-icon { font-size: 50px; margin-bottom: 20px; }
+        .feature h3 { margin-bottom: 15px; color: #ff6b35; }
+
+        /* Footer */
+        footer { background: #333; color: white; padding: 40px; text-align: center; }
+        footer p { opacity: 0.8; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            header { padding: 15px 20px; }
+            nav a { margin-left: 15px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">OJ's <span>Juice</span></div>
+        <nav>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Fresh Daily Juices</h1>
+            <p>100% Natural • Handcrafted • Healthful</p>
+            <a href="#menu" class="cta">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h2 class="section-title">Our Signature Juices</h2>
+        <div class="juice-grid">
+            <div class="juice-card">
+                <div class="juice-img">🍊</div>
+                <div class="juice-info">
+                    <h3>Orange Sunrise</h3>
+                    <p>Fresh pressed oranges with a hint of carrot and ginger. Boost your immune system!</p>
+                    <div class="price">$7.99</div>
+                </div>
+            </div>
+            <div class="juice-card">
+                <div class="juice-img">🍏</div>
+                <div class="juice-info">
+                    <h3>Green Power</h3>
+                    <p>Spinach, apple, celery, and kale. The ultimate detox drink for vibrant health.</p>
+                    <div class="price">$8.99</div>
+                </div>
+            </div>
+            <div class="juice-card">
+                <div class="juice-img">🍓</div>
+                <div class="juice-info">
+                    <h3>Berry Blast</h3>
+                    <p>Mixed berries with banana and coconut water. Antioxidants in every sip!</p>
+                    <div class="price">$8.49</div>
+                </div>
+            </div>
+            <div class="juice-card">
+                <div class="juice-img">🥭</div>
+                <div class="juice-info">
+                    <h3>Tropical Twist</h3>
+                    <p>Mango, pineapple, and passion fruit. Transport yourself to the tropics!</p>
+                    <div class="price">$8.99</div>
+                </div>
+            </div>
+            <div class="juice-card">
+                <div class="juice-img">🍋</div>
+                <div class="juice-info">
+                    <h3>Lemon Zest</h3>
+                    <p>Fresh lemons with mint and agave. Refreshing and energizing!</p>
+                    <div class="price">$6.99</div>
+                </div>
+            </div>
+            <div class="juice-card">
+                <div class="juice-img">🥕</div>
+                <div class="juice-info">
+                    <h3>Carrot Glow</h3>
+                    <p>Carrots, orange, and turmeric. Great for skin and vision health.</p>
+                    <div class="price">$7.49</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="about">
+        <h2 class="section-title">Why Choose OJ's Juice?</h2>
+        <div class="features-container">
+            <div class="feature">
+                <div class="feature-icon">🌿</div>
+                <h3>100% Organic</h3>
+                <p>We source only the freshest organic fruits and vegetables from local farms.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fresh Daily</h3>
+                <p>All juices are made fresh daily. No preservatives, no added sugars.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💪</div>
+                <h3>Nutrient Rich</h3>
+                <p>Packed with vitamins, minerals, and enzymes for maximum health benefits.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Free delivery within 5 miles. Same-day service available!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="margin-bottom: 20px;">OJ's Juice</h2>
+        <p>📍 123 Fresh Street, Juice City, JC 12345</p>
+        <p>📞 (555) 123-4567</p>
+        <p>✉️ hello@ojsjuice.com</p>
+        <br>
+        <p>Open Mon-Sat: 7AM - 8PM | Sunday: 8AM - 6PM</p>
+        <br>
+        <p>© 2024 OJ's Juice. All rights reserved.</p>
+    </footer>
+</body>
+</html>
