@@ -4,52 +4,588 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OJs Juice - Fresh & Natural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff6b35;
+            --primary-dark: #e55a2b;
+            --secondary: #f7931e;
+            --accent: #ffe66d;
+            --dark: #1a1a2e;
+            --light: #fafafa;
+            --gray: #666;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fafafa; color: #333; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
 
         /* Header */
-        header { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(255,107,53,0.3); }
-        .logo { font-size: 28px; font-weight: 800; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
-        .logo span { color: #ffe66d; }
-        nav a { color: white; text-decoration: none; margin-left: 25px; font-weight: 600; transition: color 0.3s; }
-        nav a:hover { color: #ffe66d; }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(255,107,53,0.3);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo span { color: var(--accent); }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 35px;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover { color: var(--accent); }
+        nav a:hover::after { width: 100%; }
 
         /* Hero */
-        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=1200') center/cover; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-size: 56px; color: white; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
-        .hero p { font-size: 22px; color: #ffe66d; margin-bottom: 30px; }
-        .cta { background: #ff6b35; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 18px; transition: transform 0.3s, box-shadow 0.3s; display: inline-block; }
-        .cta:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(255,107,53,0.5); }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)),
+                        url('https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=1920') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(255,107,53,0.1) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .cta {
+            background: white;
+            color: var(--primary);
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255,107,53,0.4);
+        }
+
+        /* Floating fruits */
+        .floating-fruit {
+            position: absolute;
+            font-size: 40px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .floating-fruit:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-fruit:nth-child(2) { top: 30%; right: 15%; animation-delay: 1s; }
+        .floating-fruit:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 2s; }
+        .floating-fruit:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
 
         /* Menu Section */
-        .menu { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 42px; margin-bottom: 50px; color: #ff6b35; }
-        .juice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .juice-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); transition: transform 0.3s; }
-        .juice-card:hover { transform: translateY(-10px); }
-        .juice-img { height: 200px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); display: flex; align-items: center; justify-content: center; font-size: 80px; }
-        .juice-info { padding: 25px; }
-        .juice-info h3 { font-size: 24px; margin-bottom: 10px; color: #333; }
-        .juice-info p { color: #666; margin-bottom: 15px; line-height: 1.6; }
-        .price { font-size: 22px; color: #ff6b35; font-weight: 700; }
+        .menu {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 52px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 60px;
+        }
+
+        .juice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .juice-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .juice-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(255,107,53,0.2);
+        }
+
+        .juice-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .juice-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .juice-card:hover .juice-img img {
+            transform: scale(1.1);
+        }
+
+        .juice-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.3));
+        }
+
+        .juice-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .juice-info {
+            padding: 30px;
+        }
+
+        .juice-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .juice-info .description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .juice-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 26px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .add-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
 
         /* Features */
-        .features { background: #fff5f0; padding: 80px 40px; }
-        .features-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .feature { text-align: center; }
-        .feature-icon { font-size: 50px; margin-bottom: 20px; }
-        .feature h3 { margin-bottom: 15px; color: #ff6b35; }
+        .features {
+            background: linear-gradient(135deg, #fff5f0 0%, #fff0e8 100%);
+            padding: 120px 60px;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 50px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 60px;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 22px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .feature p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 60px;
+            background: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,107,53,0.2) 0%, transparent 70%);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .about-text h2 span { color: var(--primary); }
+
+        .about-text p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 60px;
+            background: white;
+        }
+
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #fff5f0 0%, white 100%);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-text {
+            font-size: 22px;
+            line-height: 1.8;
+            color: var(--dark);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-author .name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .testimonial-author .role {
+            font-size: 14px;
+            color: var(--gray);
+        }
 
         /* Footer */
-        footer { background: #333; color: white; padding: 40px; text-align: center; }
-        footer p { opacity: 0.8; }
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 60px 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 25px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: white;
+            border-radius: 2px;
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes scrollDown {
+            0% { opacity: 1; top: 8px; }
+            100% { opacity: 0; top: 20px; }
+        }
 
         /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 { font-size: 48px; }
+            .about-content { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
         @media (max-width: 768px) {
+            header { padding: 15px 25px; }
             .hero h1 { font-size: 36px; }
-            header { padding: 15px 20px; }
-            nav a { margin-left: 15px; font-size: 14px; }
+            .menu, .features, .about, .testimonials, footer { padding: 80px 25px; }
+            .section-title { font-size: 36px; }
+            .footer-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -59,67 +595,120 @@
         <nav>
             <a href="#menu">Menu</a>
             <a href="#about">About</a>
+            <a href="#testimonials">Reviews</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <section class="hero">
-        <div>
+        <div class="floating-fruit">🍊</div>
+        <div class="floating-fruit">🍎</div>
+        <div class="floating-fruit">🥭</div>
+        <div class="floating-fruit">🍋</div>
+
+        <div class="hero-content">
             <h1>Fresh Daily Juices</h1>
-            <p>100% Natural • Handcrafted • Healthful</p>
+            <p>100% NATURAL • HANDCRAFTED • HEALTHFUL</p>
             <a href="#menu" class="cta">Explore Our Menu</a>
+        </div>
+
+        <div class="scroll-indicator">
+            <span></span>
         </div>
     </section>
 
     <section class="menu" id="menu">
         <h2 class="section-title">Our Signature Juices</h2>
+        <p class="section-subtitle">Handcrafted with love using only the freshest ingredients</p>
+
         <div class="juice-grid">
             <div class="juice-card">
-                <div class="juice-img">🍊</div>
+                <div class="juice-img">
+                    <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600" alt="Orange Sunrise Juice">
+                    <span class="juice-tag">Best Seller</span>
+                </div>
                 <div class="juice-info">
                     <h3>Orange Sunrise</h3>
-                    <p>Fresh pressed oranges with a hint of carrot and ginger. Boost your immune system!</p>
-                    <div class="price">$7.99</div>
+                    <p class="description">Fresh pressed oranges with a hint of carrot and ginger. Boost your immune system with every sip!</p>
+                    <div class="juice-meta">
+                        <span class="price">$7.99</span>
+                        <button class="add-btn">Order Now</button>
+                    </div>
                 </div>
             </div>
+
             <div class="juice-card">
-                <div class="juice-img">🍏</div>
+                <div class="juice-img">
+                    <img src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=600" alt="Green Power Juice">
+                    <span class="juice-tag">Detox</span>
+                </div>
                 <div class="juice-info">
                     <h3>Green Power</h3>
-                    <p>Spinach, apple, celery, and kale. The ultimate detox drink for vibrant health.</p>
-                    <div class="price">$8.99</div>
+                    <p class="description">Spinach, apple, celery, and kale. The ultimate detox drink for vibrant health and energy!</p>
+                    <div class="juice-meta">
+                        <span class="price">$8.99</span>
+                        <button class="add-btn">Order Now</button>
+                    </div>
                 </div>
             </div>
+
             <div class="juice-card">
-                <div class="juice-img">🍓</div>
+                <div class="juice-img">
+                    <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=600" alt="Berry Blast Juice">
+                    <span class="juice-tag">Antioxidant</span>
+                </div>
                 <div class="juice-info">
                     <h3>Berry Blast</h3>
-                    <p>Mixed berries with banana and coconut water. Antioxidants in every sip!</p>
-                    <div class="price">$8.49</div>
+                    <p class="description">Mixed berries with banana and coconut water. Antioxidants in every sip for glowing skin!</p>
+                    <div class="juice-meta">
+                        <span class="price">$8.49</span>
+                        <button class="add-btn">Order Now</button>
+                    </div>
                 </div>
             </div>
+
             <div class="juice-card">
-                <div class="juice-img">🥭</div>
+                <div class="juice-img">
+                    <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=600" alt="Tropical Twist Juice">
+                    <span class="juice-tag">Summer Special</span>
+                </div>
                 <div class="juice-info">
                     <h3>Tropical Twist</h3>
-                    <p>Mango, pineapple, and passion fruit. Transport yourself to the tropics!</p>
-                    <div class="price">$8.99</div>
+                    <p class="description">Mango, pineapple, and passion fruit. Transport yourself to the tropics with this exotic blend!</p>
+                    <div class="juice-meta">
+                        <span class="price">$8.99</span>
+                        <button class="add-btn">Order Now</button>
+                    </div>
                 </div>
             </div>
+
             <div class="juice-card">
-                <div class="juice-img">🍋</div>
+                <div class="juice-img">
+                    <img src="https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=600" alt="Lemon Zest Juice">
+                    <span class="juice-tag">Refreshing</span>
+                </div>
                 <div class="juice-info">
                     <h3>Lemon Zest</h3>
-                    <p>Fresh lemons with mint and agave. Refreshing and energizing!</p>
-                    <div class="price">$6.99</div>
+                    <p class="description">Fresh lemons with mint and agave. Refreshing and energizing - perfect for any time of day!</p>
+                    <div class="juice-meta">
+                        <span class="price">$6.99</span>
+                        <button class="add-btn">Order Now</button>
+                    </div>
                 </div>
             </div>
+
             <div class="juice-card">
-                <div class="juice-img">🥕</div>
+                <div class="juice-img">
+                    <img src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=600" alt="Carrot Glow Juice">
+                    <span class="juice-tag">Healthy</span>
+                </div>
                 <div class="juice-info">
                     <h3>Carrot Glow</h3>
-                    <p>Carrots, orange, and turmeric. Great for skin and vision health.</p>
-                    <div class="price">$7.49</div>
+                    <p class="description">Carrots, orange, and turmeric. Great for skin health and vision - glow from within!</p>
+                    <div class="juice-meta">
+                        <span class="price">$7.49</span>
+                        <button class="add-btn">Order Now</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,39 +716,173 @@
 
     <section class="features" id="about">
         <h2 class="section-title">Why Choose OJ's Juice?</h2>
+        <p class="section-subtitle">We're committed to delivering the freshest, healthiest juices</p>
+
         <div class="features-container">
             <div class="feature">
                 <div class="feature-icon">🌿</div>
                 <h3>100% Organic</h3>
-                <p>We source only the freshest organic fruits and vegetables from local farms.</p>
+                <p>We source only the freshest organic fruits and vegetables from local farms you can trust.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">⚡</div>
                 <h3>Fresh Daily</h3>
-                <p>All juices are made fresh daily. No preservatives, no added sugars.</p>
+                <p>All juices are made fresh daily. No preservatives, no added sugars - just nature's best.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">💪</div>
                 <h3>Nutrient Rich</h3>
-                <p>Packed with vitamins, minerals, and enzymes for maximum health benefits.</p>
+                <p>Packed with vitamins, minerals, and enzymes for maximum health benefits in every bottle.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🚚</div>
                 <h3>Fast Delivery</h3>
-                <p>Free delivery within 5 miles. Same-day service available!</p>
+                <p>Free delivery within 5 miles. Same-day service available for orders before 2PM!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="testimonials">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Crafted with <span>Passion</span> Since 2020</h2>
+                <p>At OJ's Juice, we believe in the power of natural, fresh ingredients. Our journey began with a simple mission: to bring the healthiest, most delicious juices to our community.</p>
+                <p>Every juice is crafted with love, using time-tested recipes and the freshest ingredients from local organic farms. We never compromise on quality.</p>
+
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Unique Recipes</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4.9</div>
+                        <div class="stat-label">Star Rating</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600" alt="Fresh juice bar">
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">What Our Customers Say</h2>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">"OJ's Juice has completely transformed my morning routine! The Green Power juice gives me so much energy throughout the day. I can't imagine starting my day without it now!"</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Sarah M.">
+                    <div>
+                        <div class="name">Sarah Mitchell</div>
+                        <div class="role">Loyal Customer, 2 years</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer id="contact">
-        <h2 style="margin-bottom: 20px;">OJ's Juice</h2>
-        <p>📍 123 Fresh Street, Juice City, JC 12345</p>
-        <p>📞 (555) 123-4567</p>
-        <p>✉️ hello@ojsjuice.com</p>
-        <br>
-        <p>Open Mon-Sat: 7AM - 8PM | Sunday: 8AM - 6PM</p>
-        <br>
-        <p>© 2024 OJ's Juice. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">OJ's <span>Juice</span></div>
+                <p>Fresh, natural, and delicious juices crafted with love. Join thousands of happy customers who have made OJ's Juice part of their healthy lifestyle.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Catering</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Subscriptions</a></li>
+                    <li><a href="#">Corporate Orders</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li>📍 123 Fresh Street, Juice City</li>
+                    <li>📞 (555) 123-4567</li>
+                    <li>✉️ hello@ojsjuice.com</li>
+                    <li>🕐 Mon-Sat: 7AM - 8PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 OJ's Juice. All rights reserved. Made with ❤️ and fresh fruits</p>
+        </div>
     </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.textContent;
+                this.textContent = 'Added! ✅';
+                this.style.background = '#4CAF50';
+
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                }, 1500);
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 30px rgba(255,107,53,0.4)';
+            } else {
+                header.style.boxShadow = '0 4px 30px rgba(255,107,53,0.3)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.juice-card, .feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
